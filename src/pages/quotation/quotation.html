@@ -1,0 +1,66 @@
+<view style="width: 100%; height: 100%">
+  <view style="overflow: hidden;">
+    <view style="display: flex; flex-direction: row; justify-content: flex-start; align-items: center; margin: 14rpx;">
+      <view style="color: {{['#828282', '#CC3300', '#328A33'][dynaData.upDown]}}; font-size: 60rpx; margin-right: 20rpx;">{{dynaData.ZuiXinJia}}</view>
+      <view style="color: {{['#828282', '#CC3300', '#328A33'][dynaData.upDown]}};">
+        <view style="font-size: 24rpx;">{{dynaData.ZhangDie}}</view>
+        <view style="font-size: 24rpx;">{{dynaData.ZhangFu}}</view>
+      </view>
+      <view style="flex: 1; text-align: right; align-self: flex-start;">
+        <block wx:if="{{!isPortfolio}}">
+          <button type="primary" bindtap="addPortfolio" style="font-size: 14px; display: inline-block;">添加自选股</button>
+        </block>
+        <block wx:else>
+          <button type="warn" bindtap="removePortfolio" style="font-size: 14px; display: inline-block;">删除自选股</button>
+        </block>
+      </view>
+    </view>
+    <view style="margin: 14rpx; font-size: 24rpx;">{{dynaData.ShiJian}}</view>
+    <view style="border-top: 4rpx solid #eee;">
+      <view style="border-bottom: 4rpx solid #eee; display: flex; flex-direction: row; align-items: center; color: #828282; font-size: 28rpx; line-height: 48rpx; text-align: center;">
+        <view style="flex: 1; border-right: 4rpx solid #eee;">
+          <view>今开</view>
+          <view>{{dynaData.KaiPanJia}}</view>
+        </view>
+        <view style="flex: 1; border-right: 4rpx solid #eee;">
+          <view>昨收</view>
+          <view>{{dynaData.ZuoShou}}</view>
+        </view>
+        <view style="flex: 1; border-right: 4rpx solid #eee;">
+          <view>最高</view>
+          <view>{{dynaData.ZuiGaoJia}}</view>
+        </view>
+        <view style="flex: 1; border-right: 4rpx solid #eee;">
+          <view>最低</view>
+          <view>{{dynaData.ZuiDiJia}}</view>
+        </view>
+      </view>
+      <view style="border-bottom: 4rpx solid #eee; display: flex; flex-direction: row; align-items: center; color: #828282; font-size: 28rpx; line-height: 48rpx; text-align: center;">
+        <view style="flex: 1; border-right: 4rpx solid #eee;">
+          <view>成交量(股)</view>
+          <view>{{dynaData.ChengJiaoLiang}}</view>
+        </view>
+        <view style="flex: 1; border-right: 4rpx solid #eee;">
+          <view>市盈率</view>
+          <view>{{dynaData.ShiYingLv}}</view>
+        </view>
+        <view style="flex: 1; border-right: 4rpx solid #eee;">
+          <view>总市值</view>
+          <view>{{dynaData.ZongShiZhi}}</view>
+        </view>
+        <view style="flex: 1; border-right: 4rpx solid #eee;">
+          <view>换手率(%)</view>
+          <view>{{dynaData.HuanShou}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- {{obj}} {{dynaData.ZuiXing}} {{dynaData.ShiJian}} -->
+  <view class="chart-tab">
+    <view class="chart-tab-item {{chartType === 'min' ? 'actived' : ''}}" bindtap="showMin">分时</view>
+    <view class="chart-tab-item {{chartType === 'kline' && period === '1day' ? 'actived' : ''}}" bindtap="showKline" data-period="1day">日K</view>
+    <view class="chart-tab-item {{chartType === 'kline' && period === 'week'  ? 'actived' : ''}}" bindtap="showKline" data-period="week">周K</view>
+    <view class="chart-tab-item {{chartType === 'kline' && period === 'month'  ? 'actived' : ''}}" bindtap="showKline" data-period="month">月K</view>
+  </view>
+  <canvas canvas-id="1" style="width: {{chartWidth}}px; height: {{chartHeight}}px" bindtouchstart="touchstart" bindtouchmove="touchmove" bindtouchend="touchend" bindtouchcancel="touchcancel" bindlongtap="longtap"></canvas>
+</view>

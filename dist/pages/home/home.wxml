@@ -1,0 +1,19 @@
+<view class="container">
+  <view class="search" style="height: 60rpx; border: 4rpx solid #dddddd; margin: 10rpx; box-sizing: border-box; border-radius: 10rpx;" bindtap="openSearch">
+    <image src="../../image/search.png" mode="aspectFit" style="width: 50rpx; height: 50rpx; padding: 4rpx; position: absolute; left: 12rpx;"></image>
+    <view style="font-size: 14px; color: #999; padding: 14rpx 60rpx;">请输入股票代码或名称拼音首字母</view>
+    <!-- <input disabled placeholder="请输入股票代码或名称拼音首字母" style="padding: 4rpx 0 0 60rpx; font-size: 28rpx; line-height: 60rpx;"/> -->
+  </view>
+  <view class="portfolio-list-title" style="font-size: 28rpx; padding: 12rpx 8rpx;background-color: #E5E5E5; color: #3A3939;">自选股</view>
+  <scroll-view scroll-y="true" style="overflow: auto;">
+    <view wx:for="{{stockList}}" wx:key="{{Obj}}" data-obj="{{item.Obj}}" catchtap="openStockQuotation" style="border-bottom: 4rpx solid #eeeeee; line-height: 80rpx; font-size: 32rpx; padding: 0 10rpx; display: flex; flex-direction: row; align-items: stretch; justify-content: flex-start; text-align: right;">
+      <view style="flex: 1; text-align: left;">
+        <view style="line-height: 50rpx">{{item.ZhongWenJianCheng}}</view>
+        <view style="line-height: 30rpx; font-size: 20rpx; color: #828282">{{item.Obj}}</view>
+      </view>
+      <view style="flex: 1; color: {{['#828282', '#CC3300', '#328A33'][item.upDown]}}">{{item.ZuiXinJia}}</view>
+      <view style="flex: 1; color: {{['#828282', '#CC3300', '#328A33'][item.upDown]}}">{{item.ZhangDie}}</view>
+      <view style="width: 160rpx; line-height: 60rpx; margin: 8rpx 0 8rpx 40rpx; padding: 0 40rpx; background-color: {{['#828282', '#CC3300', '#328A33'][item.upDown]}}; box-sizing: border-box; color: white;">{{item.ZhangFu}}</view>
+    </view>
+  </scroll-view>
+</view>

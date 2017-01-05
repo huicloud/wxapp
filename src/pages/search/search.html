@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="search" style="height: 60rpx; border: 4rpx solid #ddd; margin: 10rpx; box-sizing: border-box; border-radius: 10rpx;">
+    <image src="../../image/search.png" mode="aspectFit" style="width: 50rpx; height: 50rpx; padding: 4rpx; position: absolute; left: 12rpx;"></image>
+    <input placeholder="请输入股票代码或名称拼音首字母" bindinput="changeInput" style="padding: 4rpx 0 0 60rpx; font-size: 28rpx; line-height: 60rpx;" focus="true" auto-focus/>
+  </view>
+  <view style="font-size: 28rpx; padding: 12rpx 8rpx;background-color: #2E3137;color: white;">搜索结果</view>
+  <scroll-view scroll-y="true" style="overflow: auto;">
+    <view wx:for="{{searchResult}}" wx:key="{{DaiMa}}" data-obj="{{item.DaiMa}}" catchtap="openStockQuotation" style="border-bottom: 4rpx solid #eee; line-height: 80rpx; font-size: 32rpx; padding: 0 10rpx; display: flex; flex-direction: row; align-items: stretch; justify-content: flex-start;">
+      <view style="flex: 1;">{{item.DaiMa}}</view>
+      <view style="flex: 1;">{{item.MingCheng}}</view>
+    </view>
+  </scroll-view>
+</view>

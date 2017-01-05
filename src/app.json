@@ -1,0 +1,13 @@
+{
+  "pages":[
+    "pages/home/home",
+    "pages/quotation/quotation",
+    "pages/search/search"
+  ],
+  "window":{
+    "backgroundTextStyle":"dark",
+    "navigationBarBackgroundColor": "#2E3137",
+    "navigationBarTitleText": "大智慧金融云",
+    "navigationBarTextStyle":"#fff"
+  }
+}
