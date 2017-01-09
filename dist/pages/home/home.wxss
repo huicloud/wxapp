@@ -1,0 +1,1 @@
+.stock-list .rise{background-color:#ffcece}.stock-list .fall{background-color:#b1f7a8}.stock-list .normal{background-color:'transparent';-webkit-transition:background-color .5s;transition:background-color .5s}

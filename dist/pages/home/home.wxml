@@ -5,13 +5,21 @@
     <!-- <input disabled placeholder="请输入股票代码或名称拼音首字母" style="padding: 4rpx 0 0 60rpx; font-size: 28rpx; line-height: 60rpx;"/> -->
   </view>
   <view class="portfolio-list-title" style="font-size: 28rpx; padding: 12rpx 8rpx;background-color: #E5E5E5; color: #3A3939;">自选股</view>
-  <scroll-view scroll-y="true" style="overflow: auto;">
+  <view>
+    <view style="line-height: 60rpx; font-size: 28rpx; padding: 0 10rpx; display: flex; flex-direction: row; align-items: stretch; justify-content: flex-start; text-align: right; border-bottom: 4rpx solid #eeeeee; color: #777777;">
+      <view style="flex: 1; text-align: left;">股票名称</view>
+      <view style="flex: 1;">最新价</view>
+      <view style="flex: 1;">涨跌</view>
+      <view style="width: 160rpx; margin: 0rpx 20rpx;">涨跌幅</view>
+    </view>
+  </view>
+  <scroll-view scroll-y="true" style="overflow: auto;" class="stock-list">
     <view wx:for="{{stockList}}" wx:key="{{Obj}}" data-obj="{{item.Obj}}" catchtap="openStockQuotation" style="border-bottom: 4rpx solid #eeeeee; line-height: 80rpx; font-size: 32rpx; padding: 0 10rpx; display: flex; flex-direction: row; align-items: stretch; justify-content: flex-start; text-align: right;">
       <view style="flex: 1; text-align: left;">
         <view style="line-height: 50rpx">{{item.ZhongWenJianCheng}}</view>
         <view style="line-height: 30rpx; font-size: 20rpx; color: #828282">{{item.Obj}}</view>
       </view>
-      <view style="flex: 1; color: {{['#828282', '#CC3300', '#328A33'][item.upDown]}}">{{item.ZuiXinJia}}</view>
+      <view class="{{item.priceRise === true ? 'rise' : (item.priceRise === false ? 'fall' : 'normal')}}" style="flex: 1; color: {{['#828282', '#CC3300', '#328A33'][item.upDown]}}">{{item.ZuiXinJia}}</view>
       <view style="flex: 1; color: {{['#828282', '#CC3300', '#328A33'][item.upDown]}}">{{item.ZhangDie}}</view>
       <view style="width: 160rpx; line-height: 60rpx; margin: 8rpx 0 8rpx 40rpx; padding: 0 40rpx; background-color: {{['#828282', '#CC3300', '#328A33'][item.upDown]}}; box-sizing: border-box; color: white;">{{item.ZhangFu}}</view>
     </view>

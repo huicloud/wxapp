@@ -24,7 +24,7 @@ export default class Chart {
     // 时间轴的高度为fontSize + 4
     this.timeAxisHeight = this.fontSize + 4;
 
-    this.gridLineWidth = 0.5 * this.canvas.pixelRadio;
+    this.gridLineWidth = 0.5;
     this.gridLineColor = '#dddddd';
     this.tickColor = '#555555';
     this.tickBackgroundColor = '#eeeeee';

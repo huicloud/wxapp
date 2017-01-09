@@ -15,7 +15,7 @@ function formatDyanData(data) {
     ZhangFu: formatNumber(data.ZhangFu / 100, 2, '%'),
     KaiPanJia: formatNumber(data.KaiPanJia),
     ZuoShou: formatNumber(data.ZuoShou),
-    ZuiGaoJia: formatNumber(data.KaiPanJia),
+    ZuiGaoJia: formatNumber(data.ZuiGaoJia),
     ZuiDiJia: formatNumber(data.ZuiDiJia),
     ChengJiaoLiang: formatNumber(data.ChengJiaoLiang, 2, '万/亿'),
     HuanShou: formatNumber(data.HuanShou),
@@ -179,5 +179,15 @@ Page({
 
   longtap(event) {
     this.canvas.longtap(event);
+  },
+
+  onShareAppMessage() {
+    const obj = this.data.obj;
+    const dynaData = this.data.dynaData;
+    return {
+      title: `${dynaData.ZhongWenJianCheng} - ${dynaData.Obj}`,
+      desc: `最新价:${dynaData.ZuiXinJia} 涨跌幅:${dynaData.ZhangFu}`,
+      path: `/pages/quotation/quotation?obj=${obj}`,
+    };
   },
 });

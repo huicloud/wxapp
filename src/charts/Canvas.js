@@ -243,7 +243,7 @@ export default class Canvas {
     const ctx = this.ctx;
     ctx.beginPath();
     // ctx.lineWidth = lineWidth;
-    ctx.setLineWidth(lineWidth);
+    ctx.setLineWidth(lineWidth * this.pixelRadio);
     // ctx.strokeStyle = style;
     ctx.setStrokeStyle(style);
     ctx.moveTo(this.normalizeDrawLinePoint(x1), this.normalizeDrawLinePoint(y1));
@@ -285,7 +285,7 @@ export default class Canvas {
       }
     });
     // ctx.lineWidth = lineWidth;
-    ctx.setLineWidth(lineWidth);
+    ctx.setLineWidth(lineWidth * this.pixelRadio);
     // ctx.strokeStyle = strokeColor;
     ctx.setStrokeStyle(strokeColor);
     // ctx.lineJoin = 'round';
@@ -312,7 +312,7 @@ export default class Canvas {
     // ctx.lineJoin = 'round';
     ctx.setLineJoin('round');
     // ctx.lineWidth = lineWidth;
-    ctx.setLineWidth(lineWidth);
+    ctx.setLineWidth(lineWidth * this.pixelRadio);
     // const strokeStyle = ctx.strokeStyle = color = color.toLowerCase();
     ctx.setStrokeStyle(color);
     points.forEach((eachPoint, index) => {
@@ -354,7 +354,7 @@ export default class Canvas {
     // ctx.fillStyle = fillStyle;
     ctx.setFillStyle(fillStyle);
     // ctx.lineWidth = lineWidth;
-    ctx.setLineWidth(lineWidth);
+    ctx.setLineWidth(lineWidth * this.pixelRadio);
     // ctx.strokeStyle = strokeStyle;
     ctx.setStrokeStyle(strokeStyle);
     ctx.fill();

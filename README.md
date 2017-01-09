@@ -15,4 +15,4 @@
 
     npm run dev
 
-云平台地址和token配置在 utils/util.js 中
+云平台地址, appid和secret_key配置在 utils/util.js 中

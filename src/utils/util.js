@@ -1,13 +1,54 @@
 // 由于微信小程序中Function被复写，使用instanceof Funciton 判断方法失效导致moment无法使用
 // import moment from 'moment';
+// moment.locale('zh_cn');
 import { DataStore } from './api-adapter';
 
+// 请求token
+function getToken(callback) {
+  wx.request({
+    url: 'https://gw.yundzh.com/token/access',
+    data: {
+      appid: 'xxxxxx',
+      secret_key: 'xxxxxx',
+    },
+    success(res) {
+      try {
+        const data = res.data;
+        const token = data.Data.RepDataToken[0].token;
+        callback && callback(token);
+      } catch (e) {
+        callback(new Error('请求token失败'));
+      }
+    },
+  });
+}
+
+let tokenPromise;
+function getTokenPromise() {
+  return tokenPromise || (tokenPromise = new Promise((resolve, reject) => {
+    getToken((token) => {
+      if (token instanceof Error) {
+        reject(token);
+        tokenPromise = null;
+      } else {
+        resolve(token);
+      }
+    });
+  }));
+}
+
 // 云服务器配置
+// DataStore.address = 'wss://10.15.144.101/ws';
 DataStore.address = 'wss://gw.yundzh.com/ws';
 DataStore.dataType = 'pb';
-DataStore.token = 'xxxxxx';
 
-// moment.locale('zh_cn');
+DataStore.prototype.query = (query => function (...args) {
+  const datastore = this;
+  return getTokenPromise().then((token) => {
+    datastore.token = token;
+    return query.apply(datastore, args);
+  });
+})(DataStore.prototype.query);
 
 function noop() {}
 
@@ -22,7 +63,7 @@ function noop() {}
  /* eslint no-param-reassign: 0 */
 function formatNumber(data = 0, precision = 2, unit = '', useDefault) {
   let n = Number(data);
-  if ((n === 0 || isNaN(n)) && useDefault !== false) {
+  if ((isNaN(n)) && useDefault !== false) {
     return useDefault || '--';
   }
 
